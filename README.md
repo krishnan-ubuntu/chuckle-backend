@@ -1,2 +1,2 @@
 # chuckle-backend
-Backend of Chuckle an open source Twitter clone
+Backend of Chuckle an open source Twitter clone.
