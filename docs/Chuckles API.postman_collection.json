@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "13611a62-4fe9-44f7-9050-5b4da5d2da61",
+		"name": "Chuckles API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Chuckle API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"new_chuckle\": \"My first chuckle\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/chuckles/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"chuckles",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/v1",
+			"type": "default"
+		}
+	]
+}
