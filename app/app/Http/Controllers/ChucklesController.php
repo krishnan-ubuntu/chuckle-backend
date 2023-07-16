@@ -12,6 +12,17 @@ use Validator;
 class ChucklesController extends Controller
 {
 
+    /**
+     * Api to create chuckle
+     * 
+     * @author krishnan <krishnan.ubuntu@gmail.com>
+     * 
+     * @param int $project_id
+     * @param string $heading
+     * 
+     * @return json
+     * 
+     */
     public function create(Request $request)
     {
         try {
@@ -48,4 +59,40 @@ class ChucklesController extends Controller
             return response()->json(["success" => false,  'message' => $message], 400);
         }
     }
+
+
+    /**
+     * Api to get all recent chuckles
+     * 
+     * @author krishnan <krishnan.ubuntu@gmail.com>
+     * 
+     * @param int $project_id
+     * @param string $heading
+     * 
+     * @return json
+     * 
+     */
+    public function get_chuckles(Request $request) 
+    {
+        try {
+            $sql_query = "SELECT chuckles.id AS chuckle_id, chuckles.chuckle, 
+            users.fname user_fname, users.lname user_lname
+            FROM chuckles 
+            JOIN users ON chuckles.user_id = users.id 
+            ORDER BY chuckles.id DESC LIMIT 100";
+            $recent_chuckles = DB::select($sql_query);
+            if($recent_chuckles) {
+                return response()->json(["success" => true, "data" => $recent_chuckles], 200);
+            }
+            else {
+                return response()->json(["success" => false,  'message' => 'No chuckles available'], 400);
+            }
+
+        } catch (\Throwable $th) {
+            $message = $th->getMessage();
+            return response()->json(["success" => false,  'message' => $message], 400);
+
+        }
+    }
+
 }

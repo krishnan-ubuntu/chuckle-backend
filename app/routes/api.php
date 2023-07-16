@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('v1')->group(function () {
+    Route::get('chuckles', 'App\Http\Controllers\ChucklesController@get_chuckles');
     Route::post('chuckles/create', 'App\Http\Controllers\ChucklesController@create');
 });
 
