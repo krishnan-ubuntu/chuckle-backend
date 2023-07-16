@@ -17,8 +17,7 @@ class ChucklesController extends Controller
      * 
      * @author krishnan <krishnan.ubuntu@gmail.com>
      * 
-     * @param int $project_id
-     * @param string $heading
+     * @param string new_chuckle
      * 
      * @return json
      * 
@@ -66,9 +65,6 @@ class ChucklesController extends Controller
      * 
      * @author krishnan <krishnan.ubuntu@gmail.com>
      * 
-     * @param int $project_id
-     * @param string $heading
-     * 
      * @return json
      * 
      */
@@ -101,9 +97,6 @@ class ChucklesController extends Controller
      * Api to get recent user chuckles
      * 
      * @author krishnan <krishnan.ubuntu@gmail.com>
-     * 
-     * @param int $project_id
-     * @param string $heading
      * 
      * @return json
      * 
