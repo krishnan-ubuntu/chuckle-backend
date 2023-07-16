@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix('v1')->group(function () {
+    Route::get('chuckles', 'App\Http\Controllers\ChucklesController@get_chuckles');
+    Route::get('chuckles/user', 'App\Http\Controllers\ChucklesController@get_user_chuckles');
+    Route::post('chuckles/create', 'App\Http\Controllers\ChucklesController@create');
 });
+
