@@ -95,4 +95,43 @@ class ChucklesController extends Controller
         }
     }
 
+
+
+    /**
+     * Api to get recent user chuckles
+     * 
+     * @author krishnan <krishnan.ubuntu@gmail.com>
+     * 
+     * @param int $project_id
+     * @param string $heading
+     * 
+     * @return json
+     * 
+     */
+    public function get_user_chuckles(Request $request) 
+    {
+        try {
+            //$user_id = $request->get('user_id');
+            $user_id = 1; //For now keeping it static. Will build this feature later
+            $sql_query = "SELECT chuckles.id AS chuckle_id, chuckles.chuckle, 
+            users.fname user_fname, users.lname user_lname
+            FROM chuckles 
+            JOIN users ON chuckles.user_id = users.id 
+            WHERE chuckles.user_id = ".$user_id."
+            ORDER BY chuckles.id DESC LIMIT 100";
+            $recent_chuckles = DB::select($sql_query);
+            if($recent_chuckles) {
+                return response()->json(["success" => true, "data" => $recent_chuckles], 200);
+            }
+            else {
+                return response()->json(["success" => false,  'message' => 'No chuckles available'], 400);
+            }
+
+        } catch (\Throwable $th) {
+            $message = $th->getMessage();
+            return response()->json(["success" => false,  'message' => $message], 400);
+
+        }
+    }
+
 }
